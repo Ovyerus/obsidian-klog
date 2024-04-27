@@ -1,10 +1,10 @@
 {
-	"id": "klog",
-	"name": "Klog",
-	"version": "1.0.0",
-	"minAppVersion": "1.5.12",
-	"description": "Obsidian support for the Klog file format.",
-	"author": "Ovyerus",
-	"authorUrl": "https://ovyerus.com",
-	"isDesktopOnly": false
+  "id": "klog",
+  "name": "Klog",
+  "version": "1.0.0",
+  "minAppVersion": "1.5.12",
+  "description": "Obsidian support for the Klog file format.",
+  "author": "Ovyerus",
+  "authorUrl": "https://ovyerus.com",
+  "isDesktopOnly": false
 }
