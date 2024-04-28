@@ -1,0 +1,30 @@
+name: CI
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - main
+    tags:
+      - "*"
+
+jobs:
+  build:
+    name: "Build plugin through Nix"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - run: nix flake check
+      - run: nix build .
+
+      - name: Upload artefact
+        uses: actions/upload-artifact@v4
+        with:
+          name: obsidian-klog
+          path: |
+            ./result/main.js
+            ./manifest.json
