@@ -1,4 +1,5 @@
-import { TextFileView, Plugin, TFile } from "obsidian";
+import { TextFileView, Plugin } from "obsidian";
+import Editor from "./Editor.svelte";
 
 export default class Klog extends Plugin {
   async onload() {
@@ -10,21 +11,7 @@ export default class Klog extends Plugin {
 }
 
 class KlogView extends TextFileView {
-  // #filename = "klog";
-  // #content = "";
-  sourceEl = this.contentEl.createDiv({ cls: "klog-view" });
-  // @ts-expect-error
-  editor = CodeMirror.fromTextArea(
-    this.sourceEl.createEl("textarea", { cls: "klog-editor" }),
-    {
-      lineNumbers: (this.app.vault as any).getConfig("showLineNumber"),
-      lineWrapping: true,
-      // @ts-expect-error
-      scrollbarStyle: null,
-      keyMap: "default",
-      theme: "obsidian",
-    }
-  );
+  #editor: Editor | undefined;
 
   getViewType() {
     return "klog";
@@ -42,34 +29,38 @@ class KlogView extends TextFileView {
     return extension === "klg";
   }
 
-  onload() {
-    this.editor.on("change", () => this.requestSave());
+  async onOpen() {
+    this.render();
+  }
+
+  render() {
+    if (this.#editor) {
+      this.#editor.$destroy();
+      this.contentEl.empty();
+    }
+
+    const container = this.contentEl.createEl("div");
+    const el = new Editor({
+      target: container,
+      props: {
+        data: this.data,
+        onChange: (data: string) => (this.data = data),
+      },
+    });
+    this.#editor = el;
   }
 
   getViewData() {
-    this.data = this.editor.getValue();
     return this.data;
   }
 
-  setViewData(data: string, clear: boolean) {
+  // TODO: how does obsidian do file saving in views
+  setViewData(data: string): void {
     this.data = data;
-
-    if (clear) {
-      // @ts-expect-error
-      this.editor.swapDoc(CodeMirror.Doc(data, "text/x-klog"));
-      this.editor.clearHistory();
-    }
-
-    this.editor.setValue(data);
+    this.#editor?.$set({ data });
   }
 
-  clear(): void {
-    this.editor.setValue("");
-    this.editor.clearHistory();
-    this.data = null as any;
-  }
-
-  onResize() {
-    this.editor.refresh();
+  clear() {
+    this.data = "";
   }
 }
