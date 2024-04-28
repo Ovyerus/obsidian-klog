@@ -25,6 +25,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: obsidian-klog
+          # TODO: how to rename to just main.js
           path: |
             ./result/main.js
             ./manifest.json
