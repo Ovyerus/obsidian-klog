@@ -21,6 +21,7 @@
     "esbuild": "0.20.2",
     "esbuild-svelte": "^0.8.0",
     "obsidian": "1.5.7-1",
+    "obsidian-typings": "^1.1.6",
     "prettier": "^3.2.5",
     "prettier-plugin-svelte": "^3.2.3",
     "svelte": "^4.2.15",

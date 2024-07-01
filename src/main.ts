@@ -1,4 +1,8 @@
-import { TextFileView, Plugin } from "obsidian";
+import {
+  TextFileView,
+  Plugin,
+  type MarkdownViewModeType as ViewMode,
+} from "obsidian";
 import Editor from "./Editor.svelte";
 
 export default class Klog extends Plugin {
@@ -39,12 +43,14 @@ class KlogView extends TextFileView {
       this.contentEl.empty();
     }
 
+    const viewMode = this.app.vault.getConfig("defaultViewMode") as ViewMode;
     const container = this.contentEl.createEl("div");
     const el = new Editor({
       target: container,
       props: {
         data: this.data,
         onChange: (data: string) => (this.data = data),
+        viewMode,
       },
     });
     this.#editor = el;
