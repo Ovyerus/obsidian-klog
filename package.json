@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "dev": "node esbuild.config.mjs",
-    "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production && mkdir dist && cp ./main.js ./dist/",
+    "build": "pnpm compile && rm -rf dist && mkdir dist && cp {main.js,manifest.json} ./dist/",
+    "compile": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
     "bump-version": "node version-bump.mjs && git add manifest.json versions.json"
   },
   "keywords": [],

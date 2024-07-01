@@ -31,7 +31,7 @@ in
       runHook preInstall
 
       mkdir -p $out
-      cp -r {dist/main.js,manifest.json} $out/
+      cp -r dist/* $out/
 
       runHook postInstall
     '';

@@ -23,3 +23,4 @@ data.json
 .envrc
 .direnv
 result
+dist
