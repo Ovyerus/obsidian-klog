@@ -1,27 +1,19 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs";
-    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = {
-    flake-utils,
-    nixpkgs,
-    ...
-  }:
-    flake-utils.lib.eachDefaultSystem (
-      system: let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in {
-        devShells.default = with pkgs;
-          mkShell {
-            buildInputs = [
-              nodejs
-              pnpm
-            ];
-          };
-
-        packages.default = pkgs.callPackage ./package.nix {};
-      }
-    );
+  outputs = {nixpkgs, ...}: let
+    forSystems = fn:
+      nixpkgs.lib.genAttrs [
+        "aarch64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+        "x86_64-linux"
+      ] (system: fn nixpkgs.legacyPackages.${system});
+    defaultForSystems = fn: forSystems (pkgs: {default = fn pkgs;});
+  in {
+    packages = defaultForSystems (pkgs: pkgs.callPackage ./package.nix {});
+    devShells = defaultForSystems (pkgs: with pkgs; mkShell {buildInputs = [nodejs pnpm];});
+  };
 }
