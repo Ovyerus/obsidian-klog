@@ -9,12 +9,6 @@
 </script>
 
 <div class="klog-wrapper">
-  <button
-    on:click={() => (viewMode = viewMode === "source" ? "preview" : "source")}
-  >
-    switch to {viewMode === "source" ? "preview" : "source"}
-  </button>
-
   {#if viewMode === "source"}
     <pre
       class="klog-content"
