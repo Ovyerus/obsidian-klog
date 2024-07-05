@@ -1,6 +1,6 @@
 {
   "name": "obsidian-klog",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Obsidian support for the Klog file format.",
   "main": "main.js",
   "scripts": {
