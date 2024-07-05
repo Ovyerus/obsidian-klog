@@ -29,6 +29,9 @@ importers:
       esbuild-svelte:
         specifier: ^0.8.0
         version: 0.8.0(esbuild@0.20.2)(svelte@4.2.15)
+      klog.js:
+        specifier: ^1.0.3
+        version: 1.0.3
       obsidian:
         specifier: 1.5.7-1
         version: 1.5.7-1(@codemirror/state@6.4.1)(@codemirror/view@6.26.3)
@@ -433,6 +436,9 @@ packages:
     resolution: {integrity: sha512-6Fv1DV/TYw//QF5IzQdqsNDjx/wc8TrMBZsqjL9eW01tWb7R7k/mq+/VXfJCl7SoD5emsJop9cOByJZfs8hYIw==}
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0}
 
+  date-fns@3.6.0:
+    resolution: {integrity: sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==}
+
   debug@4.3.4:
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
     engines: {node: '>=6.0'}
@@ -639,6 +645,9 @@ packages:
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
 
+  klog.js@1.0.3:
+    resolution: {integrity: sha512-HmYWGrfK56nsPCEvjtOhz47Ux6Ch5CYCC3VUMlDRWb2FE7Y3AXLVysGSjfMm7OrWJMTWZPTxk09pqH3Y9qQ10Q==}
+
   levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
@@ -710,6 +719,10 @@ packages:
     peerDependencies:
       '@codemirror/state': ^6.0.0
       '@codemirror/view': ^6.0.0
+
+  ohm-js@17.1.0:
+    resolution: {integrity: sha512-xc3B5dgAjTBQGHaH7B58M2Pmv6WvzrJ/3/7LeUzXNg0/sY3jQPdSd/S2SstppaleO77rifR1tyhdfFGNIwxf2Q==}
+    engines: {node: '>=0.12.1'}
 
   once@1.4.0:
     resolution: {integrity: sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==}
@@ -1282,6 +1295,8 @@ snapshots:
       mdn-data: 2.0.30
       source-map-js: 1.2.0
 
+  date-fns@3.6.0: {}
+
   debug@4.3.4:
     dependencies:
       ms: 2.1.2
@@ -1531,6 +1546,11 @@ snapshots:
     dependencies:
       json-buffer: 3.0.1
 
+  klog.js@1.0.3:
+    dependencies:
+      date-fns: 3.6.0
+      ohm-js: 17.1.0
+
   levn@0.4.1:
     dependencies:
       prelude-ls: 1.2.1
@@ -1594,6 +1614,8 @@ snapshots:
       '@codemirror/view': 6.26.3
       '@types/codemirror': 5.60.8
       moment: 2.29.4
+
+  ohm-js@17.1.0: {}
 
   once@1.4.0:
     dependencies:

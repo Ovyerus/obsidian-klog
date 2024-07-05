@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { MarkdownViewModeType as ViewMode } from "obsidian";
+  import Viewer from "./Viewer.svelte";
 
   export let data: string;
   export let onChange: (newData: string) => void;
@@ -23,11 +24,18 @@
     {data}
   </pre>
   {:else}
-    <pre class="klog-content">{data}</pre>
+    <Viewer {data} />
   {/if}
 </div>
 
 <style>
+  .klog-wrapper {
+    max-width: var(--file-line-width);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .klog-content {
     white-space: pre-wrap;
   }

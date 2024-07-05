@@ -15,7 +15,7 @@ out the repository in the same location and building it.
 
 ## Roadmap
 
-- [ ] Text formatting/Rich text previews.
+- [x] Text formatting/Rich text previews.
   - Requires a JS parser for the format.
 - [ ] Beyond plain text editing.
 - [ ] Make Obsidian aware of Klog tags.

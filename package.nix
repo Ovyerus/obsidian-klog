@@ -14,7 +14,7 @@ in
 
     pnpmDeps = pnpm.fetchDeps {
       inherit (finalAttrs) pname version src;
-      hash = "sha256-ZtLBm+5HmITPymR9HpJzw+/jqbUEQw1tm5kf7Gj8/+U=";
+      hash = "sha256-gC1BAPGB3Z/tN+RFEgVev4KY1BQLtGLQDr86Ym9mz04=";
     };
 
     nativeBuildInputs = [nodejs pnpm.configHook];

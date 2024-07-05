@@ -20,6 +20,7 @@
     "builtin-modules": "3.3.0",
     "esbuild": "0.20.2",
     "esbuild-svelte": "^0.8.0",
+    "klog.js": "^1.0.3",
     "obsidian": "1.5.7-1",
     "obsidian-typings": "^1.1.6",
     "prettier": "^3.2.5",
