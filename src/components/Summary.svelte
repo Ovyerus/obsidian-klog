@@ -3,6 +3,7 @@
 
   export let summary: KlogSummary;
   export let position: "record" | "entry";
+  export let id: string;
 
   // TODO: setting to treat/view value tags as nested tags.
   // By default, it only treats them as the name.
@@ -10,7 +11,11 @@
     `#${name}${value ? `=${value}` : ""}`;
 </script>
 
-<p class="klog-summary klog-{position}-summary">
+<p
+  {id}
+  class="klog-summary klog-{position}-summary"
+  aria-label={summary.toString()}
+>
   {#each summary.splitOnTags() as node}
     {#if node.type === "text"}
       <span class="klog-summary-text">{node.value}</span>

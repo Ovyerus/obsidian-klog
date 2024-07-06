@@ -44,7 +44,7 @@
     </p>
   </div>
 {:else}
-  <div class="klog-file">
+  <div class="klog-file" role="list">
     {#each records as record}
       <Record {record} />
     {/each}

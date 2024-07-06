@@ -1,25 +1,43 @@
 <script lang="ts">
-  import type { Range as KlogRange } from "klog.js";
+  import { RangeDashFormat, type Range as KlogRange } from "klog.js";
 
   export let value: KlogRange;
+
+  $: dash = value.format === RangeDashFormat.NoSpaces ? "-" : " - ";
+  $: openIndicator = "?".repeat(value.openRangePlaceholderCharCount);
+  $: label = value.end
+    ? `From ${value.start.toString()} to ${value.end.toString()}`
+    : `In progress since ${value.start.toString()}`;
 </script>
 
-<span class="klog-range klog-value" class:klog-range-open={value.open}>
-  {value.toString()}
+<span
+  class="klog-range klog-value"
+  class:klog-range-open={value.open}
+  aria-label={label}
+>
+  <time class="klog-range-start klog-time" datetime={value.start.toString()}>
+    {value.start.toString()}
+  </time>
+  {dash}
+  {#if value.end}
+    <time class="klog-range-end klog-time" datetime={value.end.toString()}>
+      {value.end.toString()}
+    </time>
+  {:else}
+    <span class="klog-range-open-indicator">{openIndicator}</span>
+  {/if}
 </span>
 
-<!-- TODO: settings to configure colour from theme variables -->
+<!-- TODO: define semantic CSS variables like a lot of other stuff. -->
 <style>
   .klog-range {
     font-weight: bolder;
-    /* TODO: use accent instead, and derive colour for open */
-    color: var(--color-purple);
+    color: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
   }
 
   .klog-range-open {
-    color: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
     text-decoration: underline;
-    text-decoration-style: dotted;
+    /* text-decoration-style: dashed; */
     text-underline-offset: 4px;
   }
 </style>
